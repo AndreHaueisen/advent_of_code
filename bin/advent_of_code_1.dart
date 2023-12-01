@@ -1,7 +1,7 @@
 import 'dart:io';
 
 void main(List<String> arguments) async {
-  final calibrations = await _loadStringsFromFile('assets/day_1.txt');
+  final calibrations = await _loadStringsFromFile('assets/calibration_codes.txt');
 
   int calibrationSum = 0;
   for (final calibration in calibrations) {
