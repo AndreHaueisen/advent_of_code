@@ -16,11 +16,11 @@ void main(List<String> arguments) async {
 
 CalibrationNumbers? _extractCalibrationNumbers(String calibration) {
   final singleDigitNumbersRegExp = r'\d';
-  final numbers = RegExp(singleDigitNumbersRegExp).allMatches(calibration).toList();
+  final matches = RegExp(singleDigitNumbersRegExp).allMatches(calibration).toList();
 
-  if (numbers.isEmpty) return null;
+  if (matches.isEmpty) return null;
 
-  final firstNumber = int.parse(numbers.first.group(0)!);
-  final lastNumber = int.parse(numbers.last.group(0)!);
+  final firstNumber = int.parse(matches.first.group(0)!);
+  final lastNumber = int.parse(matches.last.group(0)!);
   return CalibrationNumbers(first: firstNumber, second: lastNumber);
 }

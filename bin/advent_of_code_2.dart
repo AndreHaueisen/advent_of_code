@@ -1,3 +1,5 @@
+import 'package:meta/meta.dart';
+
 import 'models/calibration_numbers.dart';
 import 'utils.dart';
 
@@ -6,7 +8,7 @@ void main(List<String> arguments) async {
 
   int calibrationSum = 0;
   for (final calibration in calibrations) {
-    final calibrationNumbers = _extractCalibrationNumbers(calibration);
+    final calibrationNumbers = extractCalibrationNumbers(calibration);
     if (calibrationNumbers == null) continue;
     calibrationSum += calibrationNumbers.merged;
   }
@@ -14,15 +16,16 @@ void main(List<String> arguments) async {
   print('AOC2: The sum of all calibrations is: $calibrationSum');
 }
 
-CalibrationNumbers? _extractCalibrationNumbers(String calibration) {
+@visibleForTesting
+CalibrationNumbers? extractCalibrationNumbers(String calibration) {
   final numbersInWordsPattern = numbersInWordsMap.keys.join('|');
   final pattern = '\\d|$numbersInWordsPattern';
-  final numbers = RegExp(pattern).allMatches(calibration).toList();
+  final matches = RegExp(pattern).allMatches(calibration).toList();
 
-  if (numbers.isEmpty) return null;
+  if (matches.isEmpty) return null;
 
-  final firstNumber = _convertNumberIntoInt(numbers.first.group(0)!);
-  final lastNumber = _convertNumberIntoInt(numbers.last.group(0)!);
+  final firstNumber = _convertNumberIntoInt(matches.first.group(0)!);
+  final lastNumber = _convertNumberIntoInt(matches.last.group(0)!);
 
   print('firstNumber: $firstNumber, lastNumber: $lastNumber');
 
