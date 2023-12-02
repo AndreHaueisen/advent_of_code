@@ -1,7 +1,7 @@
 import 'package:test/test.dart';
 
-import '../bin/day_1/day_1_part_2.dart';
-import '../bin/models/calibration_numbers.dart';
+import '../../bin/day_1/day_1_part_2.dart';
+import '../../bin/models/calibration_numbers.dart';
 
 void main() {
   test('extractCalibrationNumbers', () {
