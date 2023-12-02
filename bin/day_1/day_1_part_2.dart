@@ -30,21 +30,21 @@ CalibrationNumbers? extractCalibrationNumbers(String calibration) {
 int? _extractFirstNumber(String calibration) {
   final numbersInWordsPattern = numbersInWordsMap.keys.join('|');
   final pattern = '\\d|$numbersInWordsPattern';
-  final matches = RegExp(pattern).allMatches(calibration).toList();
+  final match = RegExp(pattern).firstMatch(calibration);
 
-  if (matches.isEmpty) return null;
+  if (match == null) return null;
 
-  return _convertNumberIntoInt(matches.first.group(0)!);
+  return _convertNumberIntoInt(match.group(0)!);
 }
 
 int? _extractLastNumber(String calibration) {
   final numbersInWordsReversedPattern = numbersInWordsMap.keys.map((word) => word.reverse()).join('|');
   final pattern = '\\d|$numbersInWordsReversedPattern';
-  final matches = RegExp(pattern).allMatches(calibration.reverse()).toList();
+  final match = RegExp(pattern).firstMatch(calibration.reverse());
 
-  if (matches.isEmpty) return null;
+  if (match == null) return null;
 
-  return _convertReversedNumberIntoInt(matches.first.group(0)!);
+  return _convertReversedNumberIntoInt(match.group(0)!);
 }
 
 int _convertNumberIntoInt(String number) => numbersInWordsMap[number] ?? int.parse(number);
