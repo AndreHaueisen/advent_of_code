@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:collection/collection.dart';
 import 'package:equatable/equatable.dart';
 
@@ -14,6 +16,16 @@ class CubeGame extends Equatable {
     final grabs = rawGrabs.map((rawGrab) => CubeGrab.fromString(rawGrab)).toList();
 
     return CubeGame(id: id, grabs: grabs);
+  }
+
+  (int red, int green, int blue) get minimumViableQuantities {
+    int highestRed = 0, highestGreen = 0, highestBlue = 0;
+    for (final grab in grabs) {
+      highestRed = max(highestRed, grab.reds?.quantity ?? 0);
+      highestGreen = max(highestGreen, grab.greens?.quantity ?? 0);
+      highestBlue = max(highestBlue, grab.blues?.quantity ?? 0);
+    }
+    return (highestRed, highestGreen, highestBlue);
   }
 
   bool isValid({
