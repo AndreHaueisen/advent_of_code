@@ -1,5 +1,5 @@
-import 'models/calibration_numbers.dart';
-import 'utils.dart';
+import '../models/calibration_numbers.dart';
+import '../utils.dart';
 
 void main(List<String> arguments) async {
   final calibrations = await loadStringsFromFile('assets/calibration_codes.txt');
@@ -11,7 +11,7 @@ void main(List<String> arguments) async {
     calibrationSum += calibrationNumbers.merged;
   }
 
-  print('AOC1: The sum of all calibrations is: $calibrationSum');
+  print('Day 1 part 1: The sum of all calibrations is: $calibrationSum');
 }
 
 CalibrationNumbers? _extractCalibrationNumbers(String calibration) {

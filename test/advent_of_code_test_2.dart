@@ -1,6 +1,6 @@
 import 'package:test/test.dart';
 
-import '../bin/advent_of_code_2.dart';
+import '../bin/day_1/day_1_part_2.dart';
 import '../bin/models/calibration_numbers.dart';
 
 void main() {
@@ -22,10 +22,7 @@ void main() {
     expect(extractCalibrationNumbers('calibration1calibration2'), CalibrationNumbers(first: 1, second: 2));
     expect(extractCalibrationNumbers('cone2nine'), CalibrationNumbers(first: 1, second: 9));
     expect(extractCalibrationNumbers('qtwonesixtwosixvjmnhqbbx5'), CalibrationNumbers(first: 2, second: 5));
-  });
-
-  test('extractCalibrationNumbers edge case', () {
     expect(extractCalibrationNumbers('2twoneh'), CalibrationNumbers(first: 2, second: 1));
-    expect(extractCalibrationNumbers('nineight'), CalibrationNumbers(first: 9, second: 9));
+    expect(extractCalibrationNumbers('nineight'), CalibrationNumbers(first: 9, second: 8));
   });
 }
