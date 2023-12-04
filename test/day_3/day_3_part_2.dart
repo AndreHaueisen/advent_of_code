@@ -196,4 +196,42 @@ void main() {
     expect(results?.$1, 780);
     expect(results?.$2, 029);
   });
+
+  //......7*.89.
+  //......35....
+  test('adjacentMatchesInLine - five', () {
+    final starMatches = findStars('......7*.89.');
+
+    final firstLineResults = adjacentMatchesInLine(
+      lineUnderInvestigation: '......7*.89.',
+      match: starMatches.first,
+      starLineLength: 12,
+    );
+
+    expect(firstLineResults.length, 1);
+    expect(firstLineResults.first.group(0), '7');
+
+    final secondLineResults = adjacentMatchesInLine(
+      lineUnderInvestigation: '......35....',
+      match: starMatches.first,
+      starLineLength: 12,
+    );
+
+    expect(secondLineResults.length, 1);
+    expect(secondLineResults.first.group(0), '35');
+  });
+
+  //......7*.89.
+  //......35....
+  test('getTwoAdjacentNumbers - five', () {
+    (int firstNumber, int secondNumber)? results = getTwoAdjacentNumbers(
+      currentLine: '......7*.89.',
+      previousLine: null,
+      nextLine: '......35....',
+      match: findStars('......7*.89.').first,
+    );
+
+    expect(results?.$1, 35);
+    expect(results?.$2, 7);
+  });
 }

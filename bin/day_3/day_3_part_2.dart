@@ -29,6 +29,7 @@ void main(List<String> arguments) async {
   }
 
   final sumOfRatios = allGearRatios.fold(0, (previousValue, element) => previousValue + element);
+  print('Day 3 part 2: The sum of all gear ratios is: $sumOfRatios');
 }
 
 @visibleForTesting
@@ -89,12 +90,12 @@ List<RegExpMatch> adjacentMatchesInLine({
   final numbersMatches = _findNumbers(lineUnderInvestigation);
 
   final numbers = numbersMatches.where((numberMatch) {
-    print('line: $lineUnderInvestigation, numberMatch: ${numberMatch.group(0)}');
-    print('numberMatch.end: ${numberMatch.end}, numberMatch.start: ${numberMatch.start}, matchIndex: $matchIndex');
-    final isBefore = numberMatch.end >= matchIndex - 1;
-    final isAfter = numberMatch.start == matchIndex + 1;
-    final isAtTheSamePosition = numberMatch.start == matchIndex;
-    return isBefore || isAfter || isAtTheSamePosition;
+    for (int i = numberMatch.start; i < numberMatch.end; i++) {
+      if (i >= matchIndex - 1 && i <= matchIndex + 1) {
+        return true;
+      }
+    }
+    return false;
   }).toList(growable: false);
 
   return numbers;
